@@ -22,5 +22,7 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean package
-    - name:
+    - name: List files under tagret dir
       run: ls -al target/
+    - name: Check secret variable
+      run: echo $USERNAME
