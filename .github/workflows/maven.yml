@@ -26,10 +26,10 @@ jobs:
       run: ls -al target/
     - name: Upload to JFrog Artifactory
       env:
-        ARTIFACTORY_URL: ${{ env.ARTIFACTORY_URL }}
+        ARTIFACTORY_URL: ${{ vars.ARTIFACTORY_URL }}
         USERNAME: ${{ secrets.USERNAME }}
         PASSWORD: ${{ secrets.PASSWORD }}
       run: |
-        curl -u $USERNAME:$APASSWORD \
+        curl -u $USERNAME:$PASSWORD \
           -T target/maven-web-application.war \
           "$ARTIFACTORY_URL/maven-web-application.war"
