@@ -24,8 +24,12 @@ jobs:
       run: mvn clean package
     - name: List files under tagret dir
       run: ls -al target/
-    - name: Check secret variable
-      run: |
-         echo $USERNAME
+    - name: Upload to JFrog Artifactory
       env:
-        USERNAME: ${{ env.USERNAME }}
+        ARTIFACTORY_URL: ${{ env.ARTIFACTORY_URL }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
+      run: |
+        curl -u $USERNAME:$APASSWORD \
+          -T target/maven-web-application.war \
+          "$ARTIFACTORY_URL/maven-web-application.war"
