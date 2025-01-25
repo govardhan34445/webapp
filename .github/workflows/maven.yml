@@ -25,4 +25,7 @@ jobs:
     - name: List files under tagret dir
       run: ls -al target/
     - name: Check secret variable
-      run: echo $USERNAME
+      run: |
+         echo $USERNAME
+      env:
+        USERNAME: ${{ env.USERNAME }}
